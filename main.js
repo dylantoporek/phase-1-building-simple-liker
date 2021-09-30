@@ -4,6 +4,25 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let hearts = document.querySelectorAll('span.like-glyph');
+console.log(hearts);
+
+function likeCallBack(e){
+  let heart = e.target
+  mimicServerCall()
+  .then(function(servermessage){
+    alert('You Notified The Server');
+    alert(servermessage);
+      heart.innerText = FULL_HEART
+  })
+  .catch(function(error){
+    alert('Something Went Wrong!');
+  });
+}
+
+for (const symbol of hearts){
+  symbol.addEventListener('click', likeCallBack);
+}
 
 
 
